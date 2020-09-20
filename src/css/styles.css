@@ -1,0 +1,715 @@
+body, #root{
+    margin: 0;
+    padding: 0;
+}
+
+.intro, .menu, .pokedex, .team{
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
+    font-family: 'Orbitron', sans-serif;
+}
+
+.closer{
+    background-color: red;
+    color: black;
+    border-top-right-radius: 30px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.electric{
+    background-color: yellow;
+}
+
+.cursor-boton:hover{
+    cursor: pointer;
+}
+
+/* Intro Design */
+
+.intro{
+    background-image: linear-gradient(to bottom right, black, rgb(122, 122, 122));
+}
+
+.intro-logo{
+    width: 50%;
+    margin: 5rem 25% 0 25%;
+}
+
+.intro-title, .intro-start{
+    text-align: center;
+}
+
+.intro-title{
+    color: rgb(131, 230, 255);
+    font-size: 3rem;
+    margin: 1rem 1rem;
+    padding-bottom: 1rem;
+    text-shadow: 0 4px rgb(26, 75, 121);
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+}
+
+.intro-link{
+    text-decoration: none;
+}
+
+.intro-start{
+    color: white;
+    font-size: 2rem;
+    margin-top: 50px;
+    transition: all 0.5s;
+}
+
+.intro-start:hover{
+    color: yellow;
+    font-size: 2.3rem;
+    border-bottom: 3px dotted rgb(0, 100, 134);
+    border-top: 3px dotted rgb(0, 100, 134);
+}
+
+/* MENU DESIGN */
+
+.menu{
+    background-image: linear-gradient(to bottom, rgb(255, 94, 94), rgb(255, 173, 173));
+}
+
+
+
+.menu-logo{
+    margin: 1rem 2rem;
+    height: 3rem;
+    transition: all 0.5s;
+}
+
+.menu-logo:hover{
+    height: 3.2rem;
+}
+
+.menu-title{
+    color: rgb(27, 27, 27);
+    margin: 0;
+    padding: 3rem 0 0 0;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.menu-container{
+    display: flex;
+    flex-wrap: wrap;
+    /*background-color: black;*/
+    width: 80vw;
+    height: 70vh;
+    position: absolute;
+    margin: 1% 0 0 10%;
+}
+
+.menu-user{
+    background-image: linear-gradient(to bottom, rgba(29, 29, 29, 0.75), rgba(107, 104, 104, 0.75));
+    border-radius: 30px;
+    border: 2px solid rgb(0, 0, 0);
+    transition: all 0.5s;
+    
+}
+
+.menu-user:hover{
+    background-image: linear-gradient(to bottom, rgba(151, 0, 0, 0.85), rgba(121, 52, 52, 0.85));
+    border: 3px solid rgb(0, 0, 0);
+}
+
+.menu-user{
+    width: 90%;
+    height: 60%;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.menu-user-img{
+    min-width: 48%;
+    /*background-color: green;*/
+    padding: 0;
+    margin: 0 auto;
+    
+}
+
+.menu-user-img img{
+    border-radius: 30px;
+    height: 70%;
+    margin-top: 5px;
+}
+
+.menu-user-img div{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.menu-directions{
+    max-height: 2.3rem;
+    margin: 0 10px 0 10px;
+}
+
+.menu-user-info{
+    flex-grow: 1;
+    height: 100%;
+    max-height: 100%;
+    width: 50%;
+    border-left: 2px solid black;
+
+}
+
+.menu-info{
+    color: white;
+    max-height: 10%;
+    overflow: hidden;
+    margin: 7vh 7px;
+    text-align: left;
+}
+
+.menu-info span:hover{
+    background-color: steelblue;
+}
+
+.menu-options{
+    margin: auto;
+    display: flex;
+    flex-grow: 1;
+}
+
+.menu-options a{
+    margin: auto;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.menu-options a img{
+    width: 5rem;
+    transition: all 0.5s;
+}
+
+.menu-options a p{
+    text-align: center;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    transition: all 0.5s;
+}
+
+.menu-options a img:hover{
+    width: 5.2rem;
+}
+.menu-options a p:hover{
+    font-size: 1.7rem;
+    color: rgb(173, 0, 0);
+    letter-spacing: 5px;
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .menu-user-img {
+      height: 50%;
+      width: 100%;
+    }
+
+    .menu-user-img img{
+        height: 65%;
+      }
+
+    .menu-directions{
+        max-height: 2rem;
+        margin: 0 2rem 0 2rem;
+    }
+
+    .menu-user-info{
+        height: 48%;
+        width: 50%;
+        border-top: 2px solid black;
+        border-left: 0;
+    }
+
+    .menu-info{
+        max-height: 15%;
+        margin: 20px 7px;
+    }
+
+}
+
+/* POKEDEX DESIGN */
+
+.pokedex{
+    display: flex;
+    background-color: rgb(27, 27, 27);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pokedex-titles{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.pokedex-titles a{
+    margin: 0 1rem 0 0.3rem;
+    text-decoration: none;
+    color: rgb(255, 94, 94);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.5s;
+}
+
+.pokedex-titles a:hover{
+    font-size: 1.4rem;
+    color: rgb(252, 32, 32);
+}
+
+.pokedex-titles h2{
+    color: white;
+    margin: 0 auto;
+    padding: 0;
+    letter-spacing: 0.2rem;
+}
+
+.pokedex-show{
+    min-height: 50vh;
+    width: 100%;
+    background-image: linear-gradient(to right, rgb(180, 180, 180), rgb(27, 27, 27));
+    border-top: 2px solid rgb(73, 221, 14);
+    border-bottom: 2px solid rgb(73, 221, 14);
+}
+
+
+
+.pokedex-show ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.pokedex-show ul::-webkit-scrollbar {
+    width: 15px;
+    height: 15px; 
+}
+
+.pokedex-show ul::-webkit-scrollbar-thumb {
+    background: rgb(73, 221, 14);
+    border-radius: 4px;
+}
+
+.pokedex-show ul::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+.pokedex-show ul::-webkit-scrollbar-thumb:active {
+    background: rgb(52, 156, 11);
+}
+
+.pokedex-show ul::-webkit-scrollbar-track {
+    background: rgb(27, 27, 27);
+    border-radius: 4px;
+}
+
+.pokedex-show ul::-webkit-scrollbar-track:hover,
+.pokedex-show ul::-webkit-scrollbar-track:active {
+  background:  rgb(27, 27, 27);
+}
+
+.pokedex-show ul li{
+    padding-top: 10px;
+    margin-left: 1rem;
+    text-align: center;
+}
+
+.pokedex-show ul li{
+    margin: 0 1rem;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.pokedex-show ul li img{
+    border-radius: 30px;
+
+}
+
+.pokedex-show ul li p{
+    color: rgb(229, 255, 0);
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.pokedex-show ul li:hover{
+    background-color: rgb(20, 179, 131);
+}
+
+.pokedex-show ul #active{
+    margin: 0 5rem;
+    background-color: rgb(20, 102, 179);
+}
+
+.pokedex-options{
+    display: flex;
+    min-height: 30vh;
+    width: 100%;
+    background-color: rgb(0, 212, 149);
+    border-top: 2px solid rgb(73, 221, 14);
+    border-bottom: 2px solid rgb(73, 221, 14);
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+
+.pokedex-options-item{
+    margin: 1rem auto;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+.pokedex-options-item:hover{
+    background-color: rgb(20, 102, 179);
+}
+
+.pokedex-options-item img{
+    width: 3rem;
+}
+
+.pokedex-options-item p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    max-height: 1.2rem;
+    overflow: hidden;
+}
+
+.pokedex-options-item p span{
+    border-bottom: 1px solid black;
+}
+
+/* Description Design */
+
+.description{
+    position: fixed;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 3;
+    background-color: rgb(0, 212, 149);
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 30px;
+    left: 5%;
+    border: 2px solid yellow;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+    .description{
+        overflow-y: scroll;
+    }
+
+}
+
+
+.description-title{
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(27, 27, 27);
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.description-title h2{
+    margin: 0 auto;
+    padding: 0;
+    color: white;
+}
+
+.description-title .closer{
+    margin: 0;
+    padding: 1rem;
+}
+
+.description-main{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+}
+
+.description-img{
+    display: flex;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.description-info{
+    padding: 0;
+    margin: 0 1.7rem;
+    list-style: none;
+    max-width: 40%;
+}
+
+.description-info li{
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+}
+
+.info-left{
+    text-align: left;
+}
+
+.info-right{
+    text-align: right;
+    color: rgb(27, 27, 27);
+}
+
+.description-types{
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.description-types p{
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0 5px;
+    padding: 1rem;
+    text-align: center;
+    color: rgb(27, 27, 27);
+    border-radius: 25px;
+}
+
+.description-foot{
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    width: 100%;
+    background-color: rgb(27, 27, 27);
+}
+
+.description-foot p{
+    text-align: justify;
+    font-size: 120%;
+    color: white;
+    margin: 1rem;
+}
+
+/* Add Team Design */
+
+.add-team{
+    position: fixed;
+    background-color: white;
+    margin: 0 25%;
+    border-radius: 20px;
+    width: 50%;
+    max-height: 60%;
+    overflow: hidden;
+    overflow-y: scroll; 
+    border: 2px solid yellow;
+    
+}
+
+.add-team-title{
+    margin: 0 auto;
+    display: flex;
+    background-color: rgb(27, 27, 27);
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    min-width: 100%;  
+}
+
+.add-team-title h3{
+    margin: 0;
+    padding: 5px 0 0 10px;
+    color: rgb(73, 221, 14);
+    flex-grow: 1; 
+}
+
+.add-team-title p{
+    padding: 10px 15px;
+}
+
+.add-team-table{
+    width: 100%;
+    text-align: center;
+}
+
+.add-team-table div{
+    border-bottom: 1px solid black;
+    margin-top: 5px;
+}
+
+.add-team-table div p{
+    margin: 5px 0 0 0;
+}
+
+.add-team-new{
+    background-color: rgb(27, 27, 27);
+    width: 100%;
+    text-align: center;
+    height: 30%;
+    padding: 10px;
+}
+
+.add-team-new p{
+    color: white;
+    font-weight: bold;
+}
+
+/* Team design */
+
+/* background-color:  */
+
+.team{
+    background-color: rgb(44, 44, 104);;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-left{
+    background-color: rgb(27, 27, 27);
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    max-height: 100vh;
+    transform: translateX(-100%);
+    z-index: 3;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.team-left.active{
+    transform: translateX(0);
+}
+
+.team-left h2{
+    list-style: none;
+    font-size: 2.1rem;
+    color: rgb(255, 255, 255);    
+}
+
+.team-left ul{
+    list-style: none;
+    color: rgb(2, 132, 175);
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 84vh;
+    margin: 0;
+    padding: 0;
+}
+
+.team-left ul li{
+    font-size: 2rem;
+    border-top: 3px solid rgb(255, 255, 255);
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+.team-left ul li:hover{
+    background-color: paleturquoise;
+    color: rgb(27, 27, 27);
+}
+
+.team-title{
+    display: flex;
+    max-width: 100vw;
+    height: 2rem;
+    background-color: rgb(27, 27, 27);
+    align-items: center;
+}
+
+.team-title h2{
+    margin: auto;
+    color: royalblue;
+}
+
+.team-title h3{
+    color: rgb(65, 180, 225);
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.team-title a{
+    margin-left: 1rem;
+    color: rgb(255, 94, 94);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.team-pokemon{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100vw;
+}
+
+.team-pokemon-card{
+    display: flex;
+    width: 40%;
+    height: 25vh;
+    margin: 5px auto;
+    border: 3px solid  black;
+    border-radius: 10px;
+    background-color: rgb(2, 132, 175);
+    flex-direction: column;
+    transition: all 0.5s;
+}
+
+.team-pokemon-card:hover{
+    width: 42%;
+    height: 26vh;
+}
+
+.team-pokemon-card img{
+    margin: auto;
+    height: 70%;
+}
+
+.team-pokemon-card div{
+    display: flex;
+    background-color: black;
+}
+
+.team-pokemon-card div p{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    margin: auto;
+}
+
+.team-options{
+    width: 100vw;
+    flex-grow: 1;
+    background-color: rgb(27, 27, 27);
+    display: flex;
+    align-items: center;
+}
+.team-options p{
+    color: red;
+    font-size: 2rem;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.hidden{
+    display: none;
+}

@@ -7,6 +7,30 @@ const htmlPlugin = new HtmlWebpackPlugin({
 module.exports = { 
     entry: "./src", 
     output: { path: path.resolve(__dirname, "public"), filename: "bundle.js", }, 
-    module: { rules: [ { test: /\.(js|jsx)/, exclude: /node_modules/, use: ["babel-loader"], }, ], },
-    resolve: { extensions: ["*", ".js", ".jsx"], }, plugins: [htmlPlugin] 
+    module: { 
+        rules: [
+            {
+                test: /\.(js|jsx)/,
+                exclude: /node_modules/, 
+                use: ["babel-loader"],
+            },
+            {
+                test: /\.css$/,
+                use: [
+                  'style-loader',
+                  'css-loader'
+                ],
+              },
+              {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                  'file-loader',
+                ],
+              },
+        ], 
+    },
+    resolve: {
+        extensions: ["*",".js", ".jsx"],
+    }, 
+    plugins: [htmlPlugin] 
 };
