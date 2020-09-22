@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Start(){
     return (
-        <a href="" className="intro-link">
+        <Link to="/menu" className="intro-link">
             <h2 className="intro-start">PRESS START</h2>
-        </a>
+        </Link>
     )
 }
 

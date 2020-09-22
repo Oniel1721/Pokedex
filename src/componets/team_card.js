@@ -3,7 +3,7 @@ import sprite from '../img/pikachu.png'
 
 function Card(){
     return (
-        <div class="team-pokemon-card">
+        <div className="team-pokemon-card">
             <img src={sprite} alt="sprite"/>
             <div>
                 <p>no</p>

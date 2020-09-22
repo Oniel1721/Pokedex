@@ -2,7 +2,7 @@ import React from 'react'
 
 function Option(){
     return (
-        <p class="cursor-boton">option</p>
+        <p className="cursor-boton">option</p>
     )
 }
 

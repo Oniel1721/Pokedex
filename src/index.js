@@ -1,8 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Intro from './pages/intro'
-import Menu from './pages/menu'
-import Pokedex from './pages/pokedex'
-import Team from './pages/team'
+import App from './App'
 
-ReactDOM.render(<Team></Team>, document.querySelector('#root'))
+ReactDOM.render(<App></App>, document.querySelector('#root'));
