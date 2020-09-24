@@ -5,10 +5,10 @@ import Info from './description_info'
 import Type from './description_type'
 import Foot from './description_foot'
 
-function Description(){
+function Description(props){
     return (
         <div className="description hidden" id="description">
-                <Title></Title>
+                <Title click={props.click}></Title>
                 <div className="description-main">
                     <div className="description-img">
                         <img src={Img} alt="pikachu"/>

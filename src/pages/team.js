@@ -4,12 +4,17 @@ import Title from '../componets/team_title'
 import Card from '../componets/team_card'
 import Option from '../componets/team_option'
 
+const showAllTeams = function(){
+    let allTeams = document.getElementById("all-teams");
+    allTeams.classList.toggle("active")
+}
+
 class Team extends React.Component{
     render(){
         return (
             <div className="team">
                 <Left></Left>
-                <Title></Title>
+                <Title click={showAllTeams}></Title>
                 <div className="team-pokemon">
                     <Card></Card>
                     <Card></Card>

@@ -1,12 +1,11 @@
 import React from 'react'
-import img from '../img/pikachu.png'
 
-function Pokemon(){
+function Pokemon(props){
     return (
         <li className="cursor-boton">
-            <img src={img} alt="pikachu"/>
-            <p>No: 1</p>
-            <p>Pikachu</p>
+            <img src={props.img} alt={props.name}/>
+            <p>No: {props.no}</p>
+            <p>{props.name}</p>
         </li>
     )
 }

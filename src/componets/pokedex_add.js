@@ -3,10 +3,10 @@ import Team from './add_team.js'
 import Title from './add_title'
 import NewTeam from './add_new_team'
 
-function Add(){
+function Add(props){
     return (
         <div className="add-team hidden" id="add-team">
-                <Title></Title>
+                <Title click={props.click}></Title>
                 <div className="add-team-table">
                     <Team></Team>
                     <Team></Team>
