@@ -39,6 +39,56 @@ const showAddTeam = function(){
     }
 }
 
+const changeImg = function(sprite){
+    let newImg = document.createElement("img")
+    newImg.setAttribute("src",sprite)
+    let oldImg = document.getElementsByClassName("description-img")[0].firstChild
+    document.getElementsByClassName("description-img")[0].replaceChild(newImg,oldImg)
+}
+
+const updateDescription = function(pokeInfo){
+    changeImg(pokeInfo.sprites.front_default)
+
+    /* Changing info */
+    let info = document.getElementsByClassName("description-info")[1]
+    info.firstChild.textContent = pokeInfo.id
+    info.firstChild.nextSibling.textContent = pokeInfo.name
+    info.lastChild.textContent = pokeInfo.weight+" Lb"
+
+    /* types */
+    let types = document.getElementsByClassName("description-types")[0]
+    while(types.childNodes.length >= 1){
+        types.removeChild(types.childNodes[0])
+    }
+    
+    for(let i = 0; i<pokeInfo.types.length; i++){
+        let p = document.createElement("p")
+        p.setAttribute("class",pokeInfo.types[i].type.name)
+        p.textContent = pokeInfo.types[i].type.name
+        types.appendChild(p)
+    }
+
+}
+
+const selectPokemon = function(){
+    let ul = document.getElementById("poke-list");
+    ul.addEventListener("click",function(e){
+        if (e.target.classList.contains("pokemon")){
+            document.getElementById("active").removeAttribute("id")
+            e.target.setAttribute("id","active")
+            getApiInfo(e.target.lastChild.textContent,true,updateDescription)
+        }
+        if (e.target.tagName === "ul"){
+            return 0
+        }
+        else{
+            document.getElementById("active").removeAttribute("id")
+            e.target.parentNode.setAttribute("id","active")
+            getApiInfo(e.target.parentNode.lastChild.textContent,true,updateDescription)
+        }
+    })
+}
+
 /* Api de pokemon 
 https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807
 
@@ -55,7 +105,10 @@ const addPokemonToList = function(sprite,name,id){
     let img = document.createElement("img")
     let p1 = document.createElement("p")
     let p2 = document.createElement("p")
-    li.setAttribute("class","cursor-boton")
+    if(parseInt(id) === 1){
+        li.setAttribute("id","active")
+    }
+    li.setAttribute("class","cursor-boton pokemon")
     img.setAttribute("src",sprite)
     p1.textContent = `No: ${id}`
     p2.textContent = `${name}`
@@ -65,10 +118,13 @@ const addPokemonToList = function(sprite,name,id){
     ul.appendChild(li)
 }
 
-const api = function(no="1"){
+const getApiInfo = function(no=1, just = false, action = null){
+    if(no>807){
+        return 0
+    }
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET",`https://pokeapi.co/api/v2/pokemon/${no}`);
-    xhttp.send()
+    xhttp.send();
 
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
@@ -76,35 +132,22 @@ const api = function(no="1"){
             let id = pokeInfo.id,
                 name = pokeInfo.name,
                 sprite = pokeInfo.sprites.front_default;
-            addPokemonToList(sprite,name,id)
-            console.log(no+" agregado")
+            if(just){
+                action(pokeInfo)
+            }
+            else{
+                addPokemonToList(sprite,name,id)
+                getApiInfo(no+=1)
+            }
         }
     }
 }
 
-const getInfo = function(start,end){
-    for(let i = start; i<=end; i++){
-        let newPoke = api(i+'')
-    }
-}
-let start = 1, end = 10;
-
 class Pokedex extends React.Component{
-
     componentDidMount() {
-        setInterval(function(){
-            getInfo(start,end);
-            if(end < 807-10){
-                start+=10;
-                end+=10
-            }
-            else{
-                start = end+1
-                end = 807
-            }
-        
-        }, 750);
-
+        getApiInfo(1);
+        selectPokemon();
+        getApiInfo(1,true,updateDescription)
     }
 
     render(){
@@ -144,7 +187,5 @@ class Pokedex extends React.Component{
         )
     }
 }
-
-
 
 export default Pokedex;

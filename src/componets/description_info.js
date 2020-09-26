@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Info(){
+function Info(props){
     return (
         <ul className="description-info">
-            <li className="info-left">No:</li>
-            <li className="info-left">Name:</li>
-            <li className="info-left">Pokemon: </li>
+            <li className={props.direction}>{props.no}</li>
+            <li className={props.direction}>{props.name}</li>
+            <li className={props.direction}>{props.weight}</li>
         </ul>        
     )
 }

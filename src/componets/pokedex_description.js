@@ -8,18 +8,18 @@ import Foot from './description_foot'
 function Description(props){
     return (
         <div className="description hidden" id="description">
-                <Title click={props.click}></Title>
-                <div className="description-main">
-                    <div className="description-img">
-                        <img src={Img} alt="pikachu"/>
-                    </div>
-                    <Info></Info>
-                    <Info></Info>
-                    <Type></Type>
+            <Title click={props.click}></Title>
+            <div className="description-main">
+                <div className="description-img">
+                    <img src={Img} alt='img'/>
                 </div>
-                <Foot></Foot>
+                <Info direction="info-left" no="No:" name="Name:" weight="Weight:"></Info>
+                <Info direction="info-right" no="No:" name="Name:" weight="Weight:"></Info>
+                <Type></Type>
+            </div>
+            <Foot></Foot>
         </div>
-    )
+    ) 
 }
 
 export default Description

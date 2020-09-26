@@ -3,8 +3,8 @@ import React from 'react'
 function Type(){
     return (
         <div className="description-types">
-            <p className="electric">Electric</p>
-            <p className="electric">Electric</p>
+            <p className="electric">type1</p>
+            <p className="electric">type2</p>
         </div>       
     )
 }
