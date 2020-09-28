@@ -1,10 +1,11 @@
 import React from 'react'
+import { addPokemonTo } from '../Team_data'
 
-function Team(){
+function Team(props){
     return (
-        <div className="cursor-boton">
-            <p>Team1</p>
-            <p>Pokemons: 4</p>
+        <div className="cursor-boton" onClick={addPokemonTo(props.name)}>
+            <p>{props.name}</p>
+            <p>Pokemons: {props.number}</p>
         </div>
     )
 }

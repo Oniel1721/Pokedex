@@ -10,6 +10,8 @@ import descriptionImg from '../img/description.png'
 import searchImg from '../img/busqueda.png'
 import addImg from '../img/boton-anadir.png'
 
+import { changeSelected, addPokemonTo} from '../Team_data'
+
 let descriptionOn = false;
 let addTeamOn = false;
 
@@ -39,35 +41,68 @@ const showAddTeam = function(){
     }
 }
 
-const changeImg = function(sprite){
+
+const updateImg = function(sprite){
     let newImg = document.createElement("img")
     newImg.setAttribute("src",sprite)
+    newImg.setAttribute("class","description-pkm-img")
     let oldImg = document.getElementsByClassName("description-img")[0].firstChild
     document.getElementsByClassName("description-img")[0].replaceChild(newImg,oldImg)
 }
 
-const updateDescription = function(pokeInfo){
-    changeImg(pokeInfo.sprites.front_default)
-
-    /* Changing info */
+const updateInfo = function(id,name,weight){
     let info = document.getElementsByClassName("description-info")[1]
-    info.firstChild.textContent = pokeInfo.id
-    info.firstChild.nextSibling.textContent = pokeInfo.name
-    info.lastChild.textContent = pokeInfo.weight+" Lb"
+    info.firstChild.textContent = id
+    info.firstChild.nextSibling.textContent = name
+    info.lastChild.textContent = weight+" Lb"
 
-    /* types */
+}
+
+const updateTypes = function(typeList){
     let types = document.getElementsByClassName("description-types")[0]
     while(types.childNodes.length >= 1){
         types.removeChild(types.childNodes[0])
     }
     
-    for(let i = 0; i<pokeInfo.types.length; i++){
+    for(let i = 0; i<typeList.length; i++){
         let p = document.createElement("p")
-        p.setAttribute("class",pokeInfo.types[i].type.name)
-        p.textContent = pokeInfo.types[i].type.name
+        p.setAttribute("class",typeList[i].type.name)
+        p.textContent = typeList[i].type.name
         types.appendChild(p)
     }
+}
 
+const updateAbility = function(abilityInfo, name){
+    let p = document.getElementById("description-ability")
+    let h4 = document.getElementById("abilitie-name")
+    h4.textContent = `Ability: ${name}`
+    for(let i = 0; i<abilityInfo.effect_entries.length;i++){
+        if(abilityInfo.effect_entries[i].language.name === "en"){
+            p.textContent = abilityInfo.effect_entries[i].effect
+            break;
+        }
+    }
+}
+
+const getAbilities = function(no=1, action=null){
+    let xhttp = new XMLHttpRequest()
+    xhttp.open("GET",`https://pokeapi.co/api/v2/ability/${no}`);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            let abilityInfo = JSON.parse(this.responseText)
+            action(abilityInfo,no)
+        }
+    }
+}
+
+const updateDescription = function(pokeInfo){
+    updateImg(pokeInfo.sprites.front_default)
+    updateInfo(pokeInfo.id,pokeInfo.name,pokeInfo.weight)
+    updateTypes(pokeInfo.types)
+    let selectAbility = parseInt(pokeInfo.abilities.length*Math.random())
+    getAbilities(pokeInfo.abilities[selectAbility].ability.name,updateAbility)
 }
 
 const selectPokemon = function(){
@@ -133,6 +168,7 @@ const getApiInfo = function(no=1, just = false, action = null){
                 name = pokeInfo.name,
                 sprite = pokeInfo.sprites.front_default;
             if(just){
+                changeSelected(id,name,sprite)
                 action(pokeInfo)
             }
             else{
@@ -143,11 +179,24 @@ const getApiInfo = function(no=1, just = false, action = null){
     }
 }
 
+const addPokemonToTeam = function(){
+    let table = document.getElementById("add-table");
+    table.addEventListener('click', function(e){
+        console.log('target:',e.target)
+        if(e.target.className === "cursor-boton" && e.target.tagName === "div"){
+            let name = e.target.childNodes[0].textContent;
+            console.log("nombre get",name)
+            addPokemonTo(name)
+        } 
+    })
+}
+
 class Pokedex extends React.Component{
     componentDidMount() {
         getApiInfo(1);
         selectPokemon();
         getApiInfo(1,true,updateDescription)
+        //addPokemonToTeam()
     }
 
     render(){

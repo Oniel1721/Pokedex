@@ -13,8 +13,11 @@ function Description(props){
                 <div className="description-img">
                     <img src={Img} alt='img'/>
                 </div>
-                <Info direction="info-left" no="No:" name="Name:" weight="Weight:"></Info>
-                <Info direction="info-right" no="No:" name="Name:" weight="Weight:"></Info>
+                <div className="description-basic-info">
+                    <Info direction="info-left" no="No:" name="Name:" weight="Weight:"></Info>
+                    <Info direction="info-right" no="No:" name="Name:" weight="Weight:"></Info>
+                </div>
+                
                 <Type></Type>
             </div>
             <Foot></Foot>
