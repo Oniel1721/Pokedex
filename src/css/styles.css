@@ -25,6 +25,75 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
     background-color: yellow;
 }
 
+.grass{
+    background-color: rgb(0, 173, 58);
+}
+
+.poison{
+    background-color: blueviolet;
+}
+
+.fire{
+    background-color: rgb(231, 73, 0);
+}
+
+.water{
+    background-color: rgb(0, 119, 231);
+}
+
+.fighting{
+    background-color: rgb(141, 0, 0);
+}
+
+.psychic{
+    background-color: rgb(250, 98, 212);
+}
+
+.fairy{
+    background-image: linear-gradient(to right, rgb(107, 0, 84), rgb(218, 0, 181));
+}
+
+.ground{
+    background-color: rgb(177, 104, 8);
+}
+
+.rock{
+    background-color: rgb(95, 57, 8);
+}
+
+.flying{
+    background-color: rgb(199, 244, 255);
+    color: black;
+}
+
+.ice{
+    background-color: rgb(67, 217, 255)
+}
+
+.dark{
+    background-color: rgb(27, 27, 27);
+}
+
+.bug{
+    background-color: rgb(167, 204, 0);
+}
+
+.ghost{
+    background-color: rgb(39, 0, 146);
+}
+
+.steel{
+    background-color: rgb(164, 198, 199);
+    color: black;
+}
+
+.dragon{
+    background-image: linear-gradient(to right, rgb(170, 6, 61), rgb(0, 94, 218));
+}
+
+.normal{
+    background-color: rgb(148, 148, 148);
+}
 .cursor-boton:hover{
     cursor: pointer;
 }
@@ -219,13 +288,13 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
 
 @media only screen and (max-width: 800px) {
     .menu-user-img {
-      height: 50%;
-      width: 100%;
+    height: 50%;
+    width: 100%;
     }
 
     .menu-user-img img{
         height: 65%;
-      }
+    }
 
     .menu-directions{
         max-height: 2rem;
@@ -326,7 +395,7 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
 
 .pokedex-show ul::-webkit-scrollbar-track:hover,
 .pokedex-show ul::-webkit-scrollbar-track:active {
-  background:  rgb(27, 27, 27);
+background:  rgb(27, 27, 27);
 }
 
 .pokedex-show ul li{
@@ -455,15 +524,26 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
 }
 
 .description-img{
-    display: flex;
+    flex-grow: 1;
     max-width: 100%;
-    margin: 0 auto;
-    padding: 10px;
+    padding: 0;
+    text-align: center;
+}
+
+.description-pkm-img {
+    width: 13rem;
+}
+
+.description-basic-info{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    margin: 0;
 }
 
 .description-info{
-    padding: 0;
-    margin: 0 1.7rem;
+    padding: 1rem;
+    margin: 0 auto;
     list-style: none;
     max-width: 40%;
 }
@@ -496,8 +576,10 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
     margin: 0 5px;
     padding: 1rem;
     text-align: center;
-    color: rgb(27, 27, 27);
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px black;
     border-radius: 25px;
+    border: 2px solid black;
 }
 
 .description-foot{
@@ -505,6 +587,14 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
     border-bottom-left-radius: 30px;
     width: 100%;
     background-color: rgb(27, 27, 27);
+}
+
+.description-foot h4{
+    text-align: center;
+    font-size: 140%;
+    color: white;
+    margin: 0.5rem 0 0 0;
+    padding: 0;
 }
 
 .description-foot p{
@@ -557,10 +647,17 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
 .add-team-table div{
     border-bottom: 1px solid black;
     margin-top: 5px;
+    padding: 2rem;
+}
+
+.add-team-table div:hover{
+    background-color: aqua;
 }
 
 .add-team-table div p{
-    margin: 5px 0 0 0;
+    margin: 5px auto;
+    display: inline;
+    background-color: brown;
 }
 
 .add-team-new{
@@ -708,6 +805,12 @@ p, h1, h2, h3, h4, h5, h6, a, span, li, th, td{
     font-size: 2rem;
     margin: 0 auto;
     padding: 0;
+}
+
+/* filter */
+
+.filter{
+    display: none;
 }
 
 .hidden{

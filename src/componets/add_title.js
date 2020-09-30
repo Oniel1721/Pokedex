@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Title(props){
+function Title(){
     return (
         <div className="add-team-title">
             <h3>Your Teams</h3>
-            <p className="closer cursor-boton" onClick={props.click}>X</p>
+            <p className="closer cursor-boton">X</p>
         </div>
     )
 }

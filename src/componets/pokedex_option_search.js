@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Search(props){
+function Search(){
     return (
-        <p>Search: <span contentEditable="">Write here...</span></p>
+        <input type="search" placeholder="Search..." className="search-input" />
     )
 }
 

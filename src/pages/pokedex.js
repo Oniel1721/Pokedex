@@ -11,36 +11,8 @@ import searchImg from '../img/busqueda.png'
 import addImg from '../img/boton-anadir.png'
 
 import { changeSelected, addPokemonTo} from '../Team_data'
-
-let descriptionOn = false;
-let addTeamOn = false;
-
-const showDescription = function(){
-    let description = document.getElementById("description");
-    if(addTeamOn === false){
-        description.classList.toggle("hidden");
-        if(descriptionOn === false){
-            descriptionOn = true;
-        }
-        else{
-            descriptionOn = false;
-        }
-    }
-}
-
-const showAddTeam = function(){
-    let addTeam = document.getElementById("add-team");
-    if(descriptionOn === false){
-        addTeam.classList.toggle("hidden");
-        if(addTeamOn === false){
-            addTeamOn = true;
-        }
-        else{
-            addTeamOn = false;
-        }
-    }
-}
-
+import selectPokemon from '../js/select_pokemon'
+import selectOption from '../js/select_pokedex_option'
 
 const updateImg = function(sprite){
     let newImg = document.createElement("img")
@@ -105,25 +77,6 @@ const updateDescription = function(pokeInfo){
     getAbilities(pokeInfo.abilities[selectAbility].ability.name,updateAbility)
 }
 
-const selectPokemon = function(){
-    let ul = document.getElementById("poke-list");
-    ul.addEventListener("click",function(e){
-        if (e.target.classList.contains("pokemon")){
-            document.getElementById("active").removeAttribute("id")
-            e.target.setAttribute("id","active")
-            getApiInfo(e.target.lastChild.textContent,true,updateDescription)
-        }
-        if (e.target.tagName === "ul"){
-            return 0
-        }
-        else{
-            document.getElementById("active").removeAttribute("id")
-            e.target.parentNode.setAttribute("id","active")
-            getApiInfo(e.target.parentNode.lastChild.textContent,true,updateDescription)
-        }
-    })
-}
-
 /* Api de pokemon 
 https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807
 
@@ -140,15 +93,16 @@ const addPokemonToList = function(sprite,name,id){
     let img = document.createElement("img")
     let p1 = document.createElement("p")
     let p2 = document.createElement("p")
-    if(parseInt(id) === 1){
-        li.setAttribute("id","active")
-    }
     li.setAttribute("class","cursor-boton pokemon")
+    if(parseInt(id) === 1){
+        console.log("dentro del if")
+        li.classList.add("poke-active")
+    }
     img.setAttribute("src",sprite)
-    p1.textContent = `No: ${id}`
+    p1.textContent = `${id}`
     p2.textContent = `${name}`
-    li.appendChild(img)
     li.appendChild(p1)
+    li.appendChild(img)
     li.appendChild(p2)
     ul.appendChild(li)
 }
@@ -194,8 +148,9 @@ const addPokemonToTeam = function(){
 class Pokedex extends React.Component{
     componentDidMount() {
         getApiInfo(1);
-        selectPokemon();
         getApiInfo(1,true,updateDescription)
+        selectPokemon(".pokemon",getApiInfo,updateDescription)
+        selectOption(".pokedex-options-item")
         //addPokemonToTeam()
     }
 
@@ -212,14 +167,12 @@ class Pokedex extends React.Component{
                     <Option 
                     img={descriptionImg} 
                     alt="description" 
-                    click={showDescription} 
                     p="Description" 
                     search="f"/>
 
                     <Option 
                     img={addImg} 
                     alt="add"
-                    click={showAddTeam}  
                     p="Add" 
                     search="f" />
 
@@ -230,8 +183,8 @@ class Pokedex extends React.Component{
                     search="t"/>
 
                 </div>
-                <Description click={showDescription}></Description>
-                <Add click={showAddTeam}></Add>
+                <Description></Description>
+                <Add></Add>
             </div>
         )
     }

@@ -1,10 +1,10 @@
 import React from 'react'
 
-function Title(props){
+function Title(){
     return (
         <div className="description-title">
             <h2 >POKEMON INFO</h2>
-            <p className="closer cursor-boton" onClick={props.click}>X</p>
+            <p className="closer cursor-boton">X</p>
         </div>         
     )
 }

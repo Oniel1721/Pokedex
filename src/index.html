@@ -9,6 +9,10 @@
     <div id="root"></div>
 
     <style>
+        html{
+            scroll-behavior: smooth;
+        }
+
         body, #root{
             margin: 0;
             padding: 0;
@@ -437,8 +441,7 @@
             background-color: rgb(20, 179, 131);
         }
 
-        .pokedex-show ul #active{
-            margin: 0 5rem;
+        .pokedex-show ul .poke-active{
             background-color: rgb(20, 102, 179);
         }
 
@@ -460,6 +463,13 @@
             text-align: center;
             border-radius: 10px;
             transition: all 0.5s;
+        }
+
+        .search{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .pokedex-options-item:hover{
@@ -626,8 +636,7 @@
             max-height: 60%;
             overflow: hidden;
             overflow-y: scroll; 
-            border: 2px solid yellow;
-            
+            border: 2px solid yellow;   
         }
 
         .add-team-title{
@@ -816,6 +825,12 @@
             font-size: 2rem;
             margin: 0 auto;
             padding: 0;
+        }
+
+        /* filter */
+
+        .filter{
+            display: none;
         }
 
         .hidden{
