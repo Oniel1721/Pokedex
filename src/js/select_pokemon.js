@@ -34,7 +34,11 @@ const selectPokemonByKey = function (api = false,action = false){
     })
 }
 
-export default function selectPokemon(selector,api = false,action = false){
+export default function selectPokemon(selector = false,api = false,action = false)
+{
+    if(selector === false){
+        return 0
+    }
     d.addEventListener("click", e=>{
         if(e.target.matches(selector) || e.target.matches(selector+" *")){
             d.querySelector(".poke-active").classList.remove("poke-active")

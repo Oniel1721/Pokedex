@@ -5,18 +5,8 @@ function Left(){
     return (
             <div className="team-left" id="all-teams">
                 <h2>All your teams</h2>
-                <ul>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
-                    <Team></Team>
+                <ul className="teams-list">
+                    
                 </ul>
             </div>
     )

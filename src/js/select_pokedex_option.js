@@ -24,7 +24,10 @@ const show = function(target){
     }
 }
 
-export default function selectOption(selector){
+export default function selectOption(selector = false){
+    if(selector === false){
+        return 0
+    }
     d.addEventListener("click", e=>{
         if(e.target.matches(selector) || e.target.matches(selector+" *") || e.target.matches(".closer")){
             let current;

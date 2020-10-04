@@ -4,23 +4,23 @@ import Title from '../componets/team_title'
 import Card from '../componets/team_card'
 import Option from '../componets/team_option'
 
-const showAllTeams = function(){
-    let allTeams = document.getElementById("all-teams");
-    allTeams.classList.toggle("active")
-}
+import { readTeams, clickTeams} from '../js/team_logic'
+
 
 class Team extends React.Component{
+
+    componentDidMount() {
+        clickTeams()
+        readTeams()
+    }
+
     render(){
         return (
             <div className="team">
                 <Left></Left>
-                <Title click={showAllTeams}></Title>
+                <Title></Title>
                 <div className="team-pokemon">
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
+                    
                 </div>
                 <div className="team-options">
                     <Option></Option>
