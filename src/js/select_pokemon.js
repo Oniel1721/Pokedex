@@ -8,47 +8,36 @@ const activator = function(target,api = false,action = false){
     }
 }
 
-const selectPokemonByKey = function (api = false,action = false){
-    d.addEventListener("keyup", e => {
-        if(e.key === "ArrowLeft" || e.key === "ArrowRight"){
-            let current = d.querySelector(".poke-active")
-            if(e.key === "ArrowLeft"){
-                if(!current.textContent.includes("bulbasaur")){
-                    current.classList.remove("poke-active")
-                    activator(current.previousSibling,api,action)
-                }
-                else{
-                    console.log("limite left")
-                }  
-            }
-            if(e.key === "ArrowRight"){
-                if(!current.textContent.includes("zeraora")){
-                    current.classList.remove("poke-active")
-                    activator(current.nextSibling,api,action)
-                }
-                else{
-                    console.log("limite right")
-                }  
-            }
-        }
-    })
-}
-
-export default function selectPokemon(selector = false,api = false,action = false)
-{
-    if(selector === false){
-        return 0
-    }
-    d.addEventListener("click", e=>{
-        if(e.target.matches(selector) || e.target.matches(selector+" *")){
-            d.querySelector(".poke-active").classList.remove("poke-active")
-            if(e.target.className.includes(selector.slice(1))){
-                activator(e.target, api, action)      
+export const selectPokemonByKey = function (key,api = false,action = false){
+    let current = d.querySelector(".poke-active")
+    if(current){
+        if(key === "ArrowLeft"){
+            if(!current.textContent.includes("bulbasaur")){
+                current.classList.remove("poke-active")
+                activator(current.previousSibling,api,action)
             }
             else{
-                activator(e.target.parentNode,api,action)
-            }
+                console.log("limite left")
+            }  
         }
-    })
-    selectPokemonByKey(api,action)
+        if(key === "ArrowRight"){
+            if(!current.textContent.includes("zeraora")){
+                current.classList.remove("poke-active")
+                activator(current.nextSibling,api,action)
+            }
+            else{
+                console.log("limite right")
+            }
+        }  
+    }    
+}
+
+export const selectPokemon = function(target = false,api = false,action = false){
+    d.querySelector(".poke-active").classList.remove("poke-active")
+    if(target.className.includes("pokemon")){
+        activator(target, api, action)      
+    }
+    else{
+        activator(target.parentNode,api,action)
+    }
 }

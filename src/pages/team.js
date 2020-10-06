@@ -4,13 +4,12 @@ import Title from '../componets/team_title'
 import Card from '../componets/team_card'
 import Option from '../componets/team_option'
 
-import { readTeams, clickTeams} from '../js/team_logic'
+import { readTeams } from '../js/team_logic'
 
 
 class Team extends React.Component{
 
     componentDidMount() {
-        clickTeams()
         readTeams()
     }
 

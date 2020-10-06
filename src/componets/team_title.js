@@ -6,7 +6,7 @@ function Title(){
         <div className="team-title">
             <Link to="/menu">MENU</Link>  
             <h2>Team name</h2>
-            <h3 className="cursor-boton">#</h3>
+            <h3 className="cursor-boton on-off-left">#</h3>
         </div>
     )
 }

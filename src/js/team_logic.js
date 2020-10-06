@@ -6,18 +6,53 @@ let teamSelected;
 const Teams = [];
 const d = document;
 
-const changeTeamSelected = function(element){
+const readPokemonsInTeam = function(){
+    for(let i = 0; i < Teams.length; i++){
+        if(Teams[i].name === teamSelected){
+            let container = d.querySelector(".team-pokemon")
+            container.innerHTML = ""
+            for(let j = 0; j < Teams[i].quantity; j++){
+                let div1 = d.createElement("div")
+                let img = d.createElement("img")
+                let div2 = d.createElement("div")
+                let p1 = d.createElement("p")
+                let p2 = d.createElement("p")
+
+                div1.setAttribute("class", "team-pokemon-card")
+                img.setAttribute("src", `${Teams[i].members[j].sprite}`)
+                p1.textContent = Teams[i].members[j].id
+                p2.textContent = Teams[i].members[j].name
+
+                div2.appendChild(p1)
+                div2.appendChild(p2)
+                div1.appendChild(img)
+                div1.appendChild(div2)
+                container.appendChild(div1)
+            }
+            return 0
+        }
+    }
+}
+
+export const changeTeamSelected = function(element){
     console.log(element)
     teamSelected = element.textContent
     d.querySelector(".selected-in-list").classList.remove("selected-in-list")
     element.classList.add("selected-in-list")
+    readPokemonsInTeam()
 }
+
 
 export const readTeams = function(){
     let ul = d.querySelector(".teams-list")
     for(let i = 0; i<Teams.length; i++){
         let li = d.createElement("li")
         li.classList.add("team-in-list")
+        if(i === 0){
+            li.classList.add("selected-in-list")
+            teamSelected = Teams[0].name
+            readPokemonsInTeam()
+        }
         li.textContent = Teams[i].name;
         ul.appendChild(li)
     }
@@ -41,7 +76,7 @@ export const updateTable = function(){
         p.textContent = `${Teams[i].name} : ${Teams[i].quantity}`
         div.appendChild(p)
         table.appendChild(div)
-    }  
+    } 
 }
 
 const isNewName = function(name){
@@ -71,7 +106,6 @@ export const createNewTeam = function(msg = "name for the new team:", v = ""){
         if(isNewName(name)){
             updateNewTeam(name)
             updateTable()
-            return 0
         }
         else{
             createNewTeam("that name already exist, input other:")
@@ -96,27 +130,6 @@ export const addPokemonTo = function(teamName){
     }
 }
 
-const activateLeft = function(){
-    d.getElementById("all-teams").classList.toggle("active");
-}
-
-export const clickTeams = function(run = true){
-    if(run === false){
-        return 0
-    }
-    d.addEventListener("click", e=>{
-        console.log(e.target)
-        if(e.target.textContent==="+ New Team"){
-            createNewTeam("name for the new team:",e.target)
-        }
-        if(e.target.matches(".list-of-teams")){
-            addPokemonTo(e.target.textContent.split(" : ")[0])
-        }
-        if(e.target.textContent === "#"){
-            activateLeft()
-        }
-        if(e.target.matches(".team-in-list")){
-            changeTeamSelected(e.target)
-        }
-    })
+export const activateLeft = function(){
+    d.querySelector("#all-teams").classList.toggle("active");
 }

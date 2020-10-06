@@ -1,15 +1,9 @@
 const d = document;
 
-export default function searchFilters(input, selector){
-    d.addEventListener("keyup", e=>{
-        if(e.target.matches(input)){
+export default function searchFilters(target, selector, key){
+    if(key === "Escape"){
+        target.value = ""
+    }
 
-            if(e.key === "Escape"){
-                e.target.value = ""
-                e.target.focus(false)
-            }
-
-            d.querySelectorAll(selector).forEach((el) =>  el.textContent.toLowerCase().includes(e.target.value) ? el.classList.remove("filter") : el.classList.add("filter"))
-        }
-    })
+    d.querySelectorAll(selector).forEach((el) =>  el.textContent.toLowerCase().includes(target.value) ? el.classList.remove("filter") : el.classList.add("filter"))
 }

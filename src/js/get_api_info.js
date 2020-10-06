@@ -14,9 +14,6 @@ export const getApiInfo = function(no = false, just = false, action = null){
     if(no === false){
         return 0
     }
-    if(no>100){
-        return 0
-    }
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET",`https://pokeapi.co/api/v2/pokemon/${no}`);
     xhttp.send();
@@ -32,7 +29,12 @@ export const getApiInfo = function(no = false, just = false, action = null){
             }
             else{
                 addPokemonToList(sprite,name,id)
-                getApiInfo(no+=1)
+                if(no<807){
+                    getApiInfo(no+=1)
+                }
+                else{
+                    console.log("Cargaron todos")
+                }
             }
         }
     }

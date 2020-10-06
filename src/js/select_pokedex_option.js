@@ -24,20 +24,13 @@ const show = function(target){
     }
 }
 
-export default function selectOption(selector = false){
-    if(selector === false){
-        return 0
+export default function selectOption(target){
+    let current;
+    if(target.className.includes("pokedex-options-item")||target.matches(".closer")){
+        current = target;     
     }
-    d.addEventListener("click", e=>{
-        if(e.target.matches(selector) || e.target.matches(selector+" *") || e.target.matches(".closer")){
-            let current;
-            if(e.target.className.includes(selector.slice(1))||e.target.matches(".closer")){
-                current = e.target;     
-            }
-            else{
-                current = e.target.parentNode;
-            }
-            show(current)
-        }
-    })
+    else{
+        current = target.parentNode;
+    }
+    show(current)  
 }

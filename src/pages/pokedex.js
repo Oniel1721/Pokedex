@@ -10,24 +10,20 @@ import descriptionImg from '../img/description.png'
 import searchImg from '../img/busqueda.png'
 import addImg from '../img/boton-anadir.png'
 
-import selectPokemon from '../js/select_pokemon'
-import selectOption from '../js/select_pokedex_option'
 import { getApiInfo } from '../js/get_api_info'
 import { updateDescription } from '../js/update_description'
-import { clickTeams } from '../js/team_logic'
+import { showPokemonInList, autoUpdate } from '../js/add_pkm'
+import { updateTable } from '../js/team_logic'
 
 
 class Pokedex extends React.Component{
     componentDidMount() {
-        getApiInfo(1);
         getApiInfo(1,true,updateDescription)
-        selectPokemon(".pokemon",getApiInfo,updateDescription)
-        selectOption(".pokedex-options-item")
-        clickTeams()
-    }
-
-    componentWillUnmount(){
-        console.log("desmontado")
+        showPokemonInList()
+        setInterval(function(){
+            autoUpdate()
+        }, 3000)
+        updateTable()
     }
 
     render(){
