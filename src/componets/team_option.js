@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Option(){
+function Option(props){
     return (
-        <p className="cursor-boton">option</p>
+        <p className="cursor-boton">{props.name}</p>
     )
 }
 

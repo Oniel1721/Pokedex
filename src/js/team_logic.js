@@ -3,10 +3,12 @@
 
 let pkmSelected;
 let teamSelected;
+let cardSelected;
 const Teams = [];
 const d = document;
 
 const readPokemonsInTeam = function(){
+    d.querySelector("#team-name").textContent = teamSelected
     for(let i = 0; i < Teams.length; i++){
         if(Teams[i].name === teamSelected){
             let container = d.querySelector(".team-pokemon")
@@ -27,6 +29,10 @@ const readPokemonsInTeam = function(){
                 div2.appendChild(p2)
                 div1.appendChild(img)
                 div1.appendChild(div2)
+                if(j === 0){
+                    cardSelected = div1
+                    div1.classList.add("card-selected")
+                }
                 container.appendChild(div1)
             }
             return 0
@@ -35,28 +41,73 @@ const readPokemonsInTeam = function(){
 }
 
 export const changeTeamSelected = function(element){
-    console.log(element)
-    teamSelected = element.textContent
-    d.querySelector(".selected-in-list").classList.remove("selected-in-list")
-    element.classList.add("selected-in-list")
-    readPokemonsInTeam()
+    if(element.textContent !== teamSelected){
+        d.querySelector(".selected-in-list").classList.remove("selected-in-list")
+        element.classList.add("selected-in-list")
+        teamSelected = element.textContent
+        readPokemonsInTeam()
+    }
 }
 
+export const changeCardSelected = function(element){
+    let i = 0;
+    while(!element.className.includes("team-pokemon-card")){
+        element = element.parentNode;
+        if(i > 5){
+            return 0
+        }
+        i++
+    }
+    if(element.lastChild.lastChild.textContent !== cardSelected){
+        d.querySelector(".card-selected").classList.remove("card-selected")
+        element.classList.add("card-selected")
+        cardSelected = element.lastChild.lastChild.textContent
+    }
+     
+}
 
 export const readTeams = function(){
     let ul = d.querySelector(".teams-list")
+    ul.innerHTML = ""
     for(let i = 0; i<Teams.length; i++){
         let li = d.createElement("li")
         li.classList.add("team-in-list")
-        if(i === 0){
-            li.classList.add("selected-in-list")
-            teamSelected = Teams[0].name
-            readPokemonsInTeam()
-        }
         li.textContent = Teams[i].name;
         ul.appendChild(li)
+        if(i === 0){
+            li.classList.add("selected-in-list")
+            teamSelected = li.textContent
+        }
+    }
+    readPokemonsInTeam()
+}
+
+export const deleteTeam = function(){
+    for(let i = 0; i < Teams.length; i++){
+        if(Teams[i].name === teamSelected){
+            if(confirm("The team "+teamSelected+" will be deleted, are you ok?")){
+                Teams.splice(i,1)
+                readTeams()
+            }
+        }
     }
 }
+
+export const deleteCard = function(){
+    for(let i = 0; i < Teams.length; i++){
+        if(Teams[i].name === teamSelected){
+            for(let j = 0; j < Teams[i].quantity; j++){
+                if(Teams[i].members[j].name === cardSelected){
+                    if(confirm(cardSelected+" will be deleted from "+teamSelected+", are you ok?")){
+                        Teams[i].members.splice(j,1)
+                        Teams[i].quantity --;
+                        readPokemonsInTeam()
+                    }
+                }
+            }
+        }
+    }
+} 
 
 export const changePkmSelected = function(id, name, sprite){
     pkmSelected = {
@@ -132,4 +183,8 @@ export const addPokemonTo = function(teamName){
 
 export const activateLeft = function(){
     d.querySelector("#all-teams").classList.toggle("active");
+}
+
+export const getTeamsLength = function(){
+    return Teams.length
 }

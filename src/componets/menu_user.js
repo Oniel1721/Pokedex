@@ -6,7 +6,7 @@ function User(){
     return (
         <div className="menu-user">
             <Avatar></Avatar>
-            <Info name="......." teams={0} pokedex={0}></Info>
+            <Info></Info>
         </div>
     )
 }

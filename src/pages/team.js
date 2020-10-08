@@ -22,7 +22,8 @@ class Team extends React.Component{
                     
                 </div>
                 <div className="team-options">
-                    <Option></Option>
+                    <Option name="Delete pkm"></Option>
+                    <Option name="Delete team"></Option>
                 </div>
             </div>
         )        

@@ -4,11 +4,11 @@ import App from './App'
 import searchFilters from './js/search_filter'
 import selectOption from './js/select_pokedex_option'
 import { selectPokemon, selectPokemonByKey} from './js/select_pokemon'
-import { createNewTeam, addPokemonTo, changeTeamSelected, activateLeft } from './js/team_logic'
+import { createNewTeam, addPokemonTo, changeTeamSelected, activateLeft, changeCardSelected, deleteTeam, deleteCard } from './js/team_logic'
 
 import { getApiInfo } from './js/get_api_info'
 import { updateDescription } from './js/update_description'
-import { changeName } from './js/menu'
+import { changeName, leftAvatar, rightAvatar } from './js/menu_logic'
 
 const d = document
 
@@ -19,14 +19,6 @@ d.addEventListener("DOMContentLoaded", e =>{
     getApiInfo(1);
     // Eventos de teclado
     d.addEventListener("keyup", e=>{
-
-        /* KEYUP IN MENU */
-
-        if(e.target.matches(".menu-info span")){
-            changeName(e.target.textContent)
-        }
-
-
         /* KEYUP IN POKEDEX */
         
         //Search Filter
@@ -45,6 +37,22 @@ d.addEventListener("DOMContentLoaded", e =>{
 
     // Eventos de click
     d.addEventListener("click", e=> {
+
+        /* CLICKS IN MENU */
+
+        //Change Name Clickin menu info
+        if(e.target.matches(".menu-info")  && e.target.textContent.includes("NAME:")){
+            changeName()
+        }
+
+        if(e.target.matches("#to-left")){
+            leftAvatar()
+        }
+
+        if(e.target.matches("#to-right")){
+            rightAvatar()
+        }
+
         /* CLICKS IN POKEDEX */
 
 
@@ -74,12 +82,26 @@ d.addEventListener("DOMContentLoaded", e =>{
         // Select Team
         if(e.target.matches(".team-in-list")){
             changeTeamSelected(e.target)
+            activateLeft()
         }
 
         // Activate left menu
         if(e.target.matches(".on-off-left")){
             activateLeft()
         }
+        // Select Pokemon Card team-pokemon-card
+        if(e.target.matches(".team-pokemon-card") || e.target.matches(".team-pokemon-card *")){
+            changeCardSelected(e.target)
+        }
 
+        // Delete team and pkm
+        if(e.target.matches(".team-options") || e.target.matches(".team-options *")){
+            if(e.target.textContent === "Delete pkm"){
+                deleteCard()
+            }
+            if(e.target.textContent === "Delete team"){
+                deleteTeam()
+            }
+        }
     })
 })

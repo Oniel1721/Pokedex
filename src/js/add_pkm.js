@@ -32,9 +32,6 @@ export const showPokemonInList = function(start = 0){
             li.appendChild(img)
             li.appendChild(p2)
             ul.appendChild(li)
-            if(i === pokeList.length){
-                console.log(i)
-            }
         }
     }
 }

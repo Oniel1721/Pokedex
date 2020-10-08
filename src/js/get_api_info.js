@@ -9,6 +9,7 @@ species name
 sprites   front_default
 types name
 */
+let lastPkm = 807;
 
 export const getApiInfo = function(no = false, just = false, action = null){
     if(no === false){
@@ -29,11 +30,11 @@ export const getApiInfo = function(no = false, just = false, action = null){
             }
             else{
                 addPokemonToList(sprite,name,id)
-                if(no<807){
+                if(no<lastPkm){
                     getApiInfo(no+=1)
                 }
                 else{
-                    console.log("Cargaron todos")
+                    console.log("All Pokemos Ready")
                 }
             }
         }
