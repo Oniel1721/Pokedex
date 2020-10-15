@@ -12,11 +12,11 @@ import { changeName, leftAvatar, rightAvatar } from './js/menu_logic'
 
 const d = document
 
-ReactDOM.render(<App></App>, document.querySelector('#root'));
+ReactDOM.render(<App></App>, d.querySelector('#root'));
 
 d.addEventListener("DOMContentLoaded", e =>{
-
     getApiInfo(1);
+
     // Eventos de teclado
     d.addEventListener("keyup", e=>{
         /* KEYUP IN POKEDEX */
@@ -33,6 +33,7 @@ d.addEventListener("DOMContentLoaded", e =>{
             selectPokemonByKey(e.key,getApiInfo,updateDescription)
         }
 
+        
     })
 
     // Eventos de click

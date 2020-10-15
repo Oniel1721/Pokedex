@@ -1,4 +1,5 @@
 import { addPokemonToList } from './add_pkm'
+import { changePkmSelected } from "./team_logic"
 
 /* Api de pokemon 
 https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807
@@ -9,7 +10,7 @@ species name
 sprites   front_default
 types name
 */
-let lastPkm = 807;
+let lastPkm = 50;
 
 export const getApiInfo = function(no = false, just = false, action = null){
     if(no === false){
@@ -26,6 +27,7 @@ export const getApiInfo = function(no = false, just = false, action = null){
                 name = pokeInfo.name,
                 sprite = pokeInfo.sprites.front_default;
             if(just){
+                changePkmSelected(id, name, sprite)
                 action(pokeInfo)
             }
             else{

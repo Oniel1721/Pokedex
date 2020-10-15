@@ -30,7 +30,7 @@ const readPokemonsInTeam = function(){
                 div1.appendChild(img)
                 div1.appendChild(div2)
                 if(j === 0){
-                    cardSelected = div1
+                    cardSelected = Teams[i].members[j].ind
                     div1.classList.add("card-selected")
                 }
                 container.appendChild(div1)
@@ -58,12 +58,17 @@ export const changeCardSelected = function(element){
         }
         i++
     }
-    if(element.lastChild.lastChild.textContent !== cardSelected){
-        d.querySelector(".card-selected").classList.remove("card-selected")
-        element.classList.add("card-selected")
-        cardSelected = element.lastChild.lastChild.textContent
-    }
-     
+    for(let i = 0; i < Teams.length; i++){
+        if(Teams[i].name === teamSelected){
+            for(let j = 0; j < Teams[i].quantity; j++){
+                if(Teams[i].members[j].name === element.lastChild.lastChild.textContent && Teams[i].members[j].ind !== cardSelected){
+                    d.querySelector(".card-selected").classList.remove("card-selected")
+                    element.classList.add("card-selected")
+                    cardSelected = Teams[i].members[j].ind
+                }
+            }
+        }
+    }   
 }
 
 export const readTeams = function(){
@@ -97,8 +102,8 @@ export const deleteCard = function(){
     for(let i = 0; i < Teams.length; i++){
         if(Teams[i].name === teamSelected){
             for(let j = 0; j < Teams[i].quantity; j++){
-                if(Teams[i].members[j].name === cardSelected){
-                    if(confirm(cardSelected+" will be deleted from "+teamSelected+", are you ok?")){
+                if(Teams[i].members[j].ind === cardSelected){
+                    if(confirm(Teams[i].members[j].name+" will be deleted from "+teamSelected+", are you ok?")){
                         Teams[i].members.splice(j,1)
                         Teams[i].quantity --;
                         readPokemonsInTeam()
@@ -112,6 +117,7 @@ export const deleteCard = function(){
 export const changePkmSelected = function(id, name, sprite){
     pkmSelected = {
         id,
+        ind : 1000,
         name,
         sprite
     }
@@ -169,6 +175,7 @@ export const addPokemonTo = function(teamName){
         if(teamName === Teams[i].name){
             if(Teams[i].members.length < 6){
                 if(confirm(pkmSelected.name+" will be added to "+teamName)){
+                    pkmSelected.ind = Teams[i].quantity
                     Teams[i].members.push(pkmSelected)
                     Teams[i].quantity++;
                     updateTable()

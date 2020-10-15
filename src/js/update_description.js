@@ -1,5 +1,3 @@
-import { changePkmSelected } from './team_logic'
-
 const d = document;
 
 const updateImg = function(sprite){
@@ -67,5 +65,4 @@ export const updateDescription = function(pokeInfo){
     let selectAbility = parseInt(pokeInfo.abilities.length*Math.random())
     updateAbility("...")
     getAbilities(pokeInfo.abilities[selectAbility].ability.name,updateAbility)
-    changePkmSelected(pokeInfo.id,pokeInfo.name,pokeInfo.sprites.front_default)
 }

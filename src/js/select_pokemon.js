@@ -35,7 +35,7 @@ export const selectPokemonByKey = function (key,api = false,action = false){
 export const selectPokemon = function(target = false,api = false,action = false){
     d.querySelector(".poke-active").classList.remove("poke-active")
     if(target.className.includes("pokemon")){
-        activator(target, api, action)      
+        activator(target, api, action)
     }
     else{
         activator(target.parentNode,api,action)
