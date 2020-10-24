@@ -10,7 +10,7 @@ species name
 sprites   front_default
 types name
 */
-let lastPkm = 50;
+let lastPkm = 807;
 
 export const getApiInfo = function(no = false, just = false, action = null){
     if(no === false){

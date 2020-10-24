@@ -25,7 +25,7 @@ class App extends React.Component{
                         <Team></Team>
                     </Route>
                     <Route>
-                        <NotFound></NotFound>
+                        <Intro></Intro>
                     </Route>
                 </Switch>
             </Router>
